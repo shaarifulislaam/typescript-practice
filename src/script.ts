@@ -255,7 +255,7 @@ console.log(userInfo(202,{name:"Arfan",age:22}));
 
 //*class
 
-class Player {
+/* class Player {
    private name: string;
    private age: number;
    readonly country : string;
@@ -268,7 +268,15 @@ class Player {
     play (){
         console.log(`${this.name} from ${this.country} is playing!`);
     }
-}
+} */
+import {Player} from './classes/Player.js'; //moduler system
+
+
+//interface import 
+import {isPlayer} from "../src/interfaces/isPlayer.js"
+let sakib : isPlayer;
+sakib = new Player("sakib",33,"BD")
+console.log(sakib)
 
 const tamim = new Player('Tamim',36,'BD');
 const afif = new Player('afif',30,'BD');
@@ -299,4 +307,80 @@ console.log(afif.country);
 
 //private dile oita k class ar bahire access ow krta parbo na use ow krta parbo na
 // readonly khetre class ar bahire access krta parbo kintu change krta parbo nah
+ 
+//*moduler system
 
+//kono kicu k import export korte..project e akadik file thakte pare tokon amra modular system use krbo
+//modular system e ts file k export deyar por import korar jnno import {} location e .js dite hobe
+//and tsconfig.json e module k es2015 korte hobe and target k ES6 kore dite hbe
+//index.html e src e type="module" add kore dite hbe
+
+
+//*Interface
+//interface mane structure ta kmn hobe
+
+
+interface rectangleOptions {
+    width: number;
+    length : number;
+
+}
+function drawRectangle(options:rectangleOptions){
+    let width = options.width;
+    let height = options.length;
+}
+
+let thereDobj = {
+    width: 30,
+    length : 40,
+    heignt : 50
+}
+drawRectangle(thereDobj);
+
+//*Generics : resusable block of code..mainly used type er khetre
+
+const addId =<T extends {name: string;dept:string}> (obj: T) =>{
+    let id = Math.floor(Math.random()*100);
+    return {...obj,id};
+}
+
+let user = addId(
+    {
+        name : "Rakib",
+        dept: "CSE",
+        core: "Javascript"
+    });
+
+    // let user =addId("");
+
+    console.log(user);
+
+    //* Enum type
+
+    enum Rtype {"Success", "Failue","Unauthenticate","Forbiden"};
+
+    interface APIResponse <T> {
+        status : number;
+        type : Rtype;
+        data : T ;
+    }
+
+    const response1 : APIResponse<string> = {
+            status: 200,
+            type : Rtype.Success,
+            data : "test"
+    }
+
+    console.log(response1);
+
+    //*Tuples : Build in type ..onekta array er moto...but aikhane order maintain korte hoy type er kintu array te maintain korte hoy nah
+    //*real life example holo excel e coloum er order maintain korar jonno use hoy
+
+    let aa = ['mamun',77,{p:3}];
+    aa[1] ="sharif" ;
+    //but tuples ar jnno  je order e jeta ache oita e dite hbe...
+    let aa2:[string ,number , object] = ["Islam" , 44 ,{A :55}];
+    // aa2[2] =33 ; //aikhane amak eeror dicce bcz ami order diyachi object bt assign krtaci number tai
+
+    console.log(aa)
+    console.log(aa2)

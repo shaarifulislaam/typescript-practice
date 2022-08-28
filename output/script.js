@@ -1,4 +1,3 @@
-"use strict";
 /* console.log("Shariful Islam");
 
 const country = "I love Bangladesh";
@@ -173,16 +172,24 @@ userInfo = (id, userDetails) => {
 };
 console.log(userInfo(202, { name: "Arfan", age: 22 }));
 //*class
-class Player {
-    constructor(n, a, c) {
+/* class Player {
+   private name: string;
+   private age: number;
+   readonly country : string;
+
+    constructor(n:string , a:number , c:string) {
         this.name = n;
         this.age = a;
         this.country = c;
     }
-    play() {
+    play (){
         console.log(`${this.name} from ${this.country} is playing!`);
     }
-}
+} */
+import { Player } from './classes/Player.js'; //moduler system
+let sakib;
+sakib = new Player("sakib", 33, "BD");
+console.log(sakib);
 const tamim = new Player('Tamim', 36, 'BD');
 const afif = new Player('afif', 30, 'BD');
 const bijoy = new Player('bijoy', 20, 'BD');
@@ -200,5 +207,49 @@ console.log(bijoy); */
 // console.log(afif.name);
 // console.log(afif.age);
 console.log(afif.country);
-//private dile oita k class ar bahire access ow krta parbo na use ow krta parbo na
-// readonly khetre class ar bahire access krta parbo kintu change krta parbo nah
+function drawRectangle(options) {
+    let width = options.width;
+    let height = options.length;
+}
+let thereDobj = {
+    width: 30,
+    length: 40,
+    heignt: 50
+};
+drawRectangle(thereDobj);
+//*Generics : resusable block of code..mainly used type er khetre
+const addId = (obj) => {
+    let id = Math.floor(Math.random() * 100);
+    return Object.assign(Object.assign({}, obj), { id });
+};
+let user = addId({
+    name: "Rakib",
+    dept: "CSE",
+    core: "Javascript"
+});
+// let user =addId("");
+console.log(user);
+//* Enum type
+var Rtype;
+(function (Rtype) {
+    Rtype[Rtype["Success"] = 0] = "Success";
+    Rtype[Rtype["Failue"] = 1] = "Failue";
+    Rtype[Rtype["Unauthenticate"] = 2] = "Unauthenticate";
+    Rtype[Rtype["Forbiden"] = 3] = "Forbiden";
+})(Rtype || (Rtype = {}));
+;
+const response1 = {
+    status: 200,
+    type: Rtype.Success,
+    data: "test"
+};
+console.log(response1);
+//*Tuples : Build in type ..onekta array er moto...but aikhane order maintain korte hoy type er kintu array te maintain korte hoy nah
+//*real life example holo excel e coloum er order maintain korar jonno use hoy
+let aa = ['mamun', 77, { p: 3 }];
+aa[1] = "sharif";
+//but tuples ar jnno  je order e jeta ache oita e dite hbe...
+let aa2 = ["Islam", 44, { A: 55 }];
+// aa2[2] =33 ; //aikhane amak eeror dicce bcz ami order diyachi object bt assign krtaci number tai
+console.log(aa);
+console.log(aa2);
